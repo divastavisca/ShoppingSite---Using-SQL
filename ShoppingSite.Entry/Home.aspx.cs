@@ -17,7 +17,6 @@ namespace ShoppingSite.Entry
         private readonly string _inventoryManager = "IManager";
         private readonly string _inventory = "Inventory";
         private readonly string _inventoryMap = "InventoryMap";
-        private readonly string _productMap = "ProductMap";
         private readonly string _productPrice = "ProductPrice";
         private readonly string _productIds = "ProductId";
 
@@ -29,7 +28,6 @@ namespace ShoppingSite.Entry
                 Session[_inventoryManager] = generator.InventoryManager;
                 Session[_productIds] = generator.ItemsGenerator.ProductIds;
                 Session[_inventory] = generator.Inventory;
-                Session[_productMap] = generator.ProductMap;
                 Session[_inventoryMap] = generator.InventoryMap;
                 Session[_productPrice] = generator.ItemsGenerator.ItemPrice;
             }
@@ -39,7 +37,7 @@ namespace ShoppingSite.Entry
         private void populateProducts()
         {
             Dictionary<string, List<string>> inventoryMap = (Dictionary<string, List<string>>)Session[_inventoryMap];
-            Dictionary<string,int> productMap= (Dictionary<string,int>)Session[_productMap];
+            Dictionary<string,string> productMap= (Dictionary<string,string>)Session[_productIds];
             Dictionary<string, int> productPrices = (Dictionary<string, int>)Session[_productPrice]; 
             foreach(KeyValuePair<string,List<string>> pair in inventoryMap)
             {
@@ -49,7 +47,7 @@ namespace ShoppingSite.Entry
                 TableCell pAction = new TableCell();
                 string productInfo = pair.Key;
                 int productCount = pair.Value.Count;
-                int productId = productMap[productInfo];
+                string productId = productMap[productInfo];
                 int productPrice = productPrices[productInfo];
                 pInfo.Text = productInfo;
                 pPrice.Text = productPrice.ToString();

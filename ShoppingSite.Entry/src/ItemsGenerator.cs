@@ -14,7 +14,6 @@ namespace ShoppingSite.Entry.src
 
         public Dictionary<string, int> ItemPrice { get; private set; }
         public Dictionary<string, List<string>> ItemMap { get; private set; }
-        public Dictionary<string, int> ProductMap { get; private set; }
         public Dictionary<string, string> ProductIds { get; private set; }
 
         private void getDataByDB()
@@ -31,12 +30,10 @@ namespace ShoppingSite.Entry.src
             string[] productArray = new string[products.Rows.Count];
             int[] productPrice = new int[products.Rows.Count];
             ItemPrice = new Dictionary<string, int>();
-            ProductMap = new Dictionary<string, int>();
             ProductIds = new Dictionary<string, string>();
             foreach (DataRow row in products.Rows)
             {
                 int quantity = Convert.ToInt32(row[2]);
-                ProductMap.Add((string)row[1], quantity);
                 ItemMap.Add((string)row[1], new List<string>());
                 ItemPrice.Add((string)row[1], Convert.ToInt32(row[3]));
                 ProductIds.Add(row[1].ToString(), row[0].ToString());

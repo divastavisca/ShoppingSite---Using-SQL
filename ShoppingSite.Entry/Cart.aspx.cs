@@ -11,7 +11,7 @@ namespace ShoppingSite.Entry
     public partial class Cart : System.Web.UI.Page
     {
         private readonly string _cart = "ShoppingCart";
-        private readonly string _productMap = "ProductMap";
+        private readonly string _productIds = "ProductId";
         private readonly string _productPrice = "ProductPrice";
         private readonly string _container = "CartContainer";
         private readonly string _totalPrice = "CartReady";
@@ -50,17 +50,16 @@ namespace ShoppingSite.Entry
 
         private void populateCart()
         {
-            Dictionary<string,int> productMap = (Dictionary<string,int>)Session[_productMap];
+            Dictionary<string, string> productMap = (Dictionary<string, string>)Session[_productIds];
             Dictionary<string, int> productPrices = (Dictionary<string, int>)Session[_productPrice];
             Dictionary<string, int> cartItems = (Dictionary<string, int>)Session[_container];
-            string querry = Request.QueryString["pid"];
+            string productId = Request.QueryString["pid"];
             int totalAmount = 0;
-            if (querry != null)
+            if (productId != null)
             {
-                int productId = Convert.ToInt32(querry);
                 string productInfo = string.Empty;
                 bool found = false;
-                foreach (KeyValuePair<string, int> pair in productMap)
+                foreach (KeyValuePair<string, string> pair in productMap)
                 {
                     if (pair.Value == productId)
                     {
