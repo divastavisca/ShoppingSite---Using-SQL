@@ -11,7 +11,6 @@ namespace ShoppingSite.Entry.src
     public class ItemsGenerator
     {
         public List<IItem> Items { get; private set; }
-
         public Dictionary<string, int> ItemPrice { get; private set; }
         public Dictionary<string, List<string>> ItemMap { get; private set; }
         public Dictionary<string, string> ProductIds { get; private set; }

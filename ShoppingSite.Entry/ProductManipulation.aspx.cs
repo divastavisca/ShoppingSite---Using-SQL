@@ -5,13 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoppingSite.Entry.src;
-using ShoppingSite.Core;
-using System.Data;
-using System.Reflection;
 
 namespace ShoppingSite.Entry
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class ProductManipulation : System.Web.UI.Page
     {
         private readonly string _session = "Identified";
         private readonly string _inventoryManager = "IManager";
@@ -19,13 +16,12 @@ namespace ShoppingSite.Entry
         private readonly string _inventoryMap = "InventoryMap";
         private readonly string _productPrice = "ProductPrice";
         private readonly string _productIds = "ProductId";
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session[_session]==null)
+            if (Session[_session] == null)
             {
-                Session[_session] = "ongoing";
                 InventoryManagerGenerator generator = new InventoryManagerGenerator();
+                Session[_session] = "ongoing";
                 Session[_inventoryManager] = generator.InventoryManager;
                 Session[_productIds] = generator.ItemsGenerator.ProductIds;
                 Session[_inventory] = generator.Inventory;
@@ -38,14 +34,15 @@ namespace ShoppingSite.Entry
         private void populateProducts()
         {
             Dictionary<string, List<string>> inventoryMap = (Dictionary<string, List<string>>)Session[_inventoryMap];
-            Dictionary<string,string> productMap= (Dictionary<string,string>)Session[_productIds];
-            Dictionary<string, int> productPrices = (Dictionary<string, int>)Session[_productPrice]; 
-            foreach(KeyValuePair<string,List<string>> pair in inventoryMap)
+            Dictionary<string, string> productMap = (Dictionary<string, string>)Session[_productIds];
+            Dictionary<string, int> productPrices = (Dictionary<string, int>)Session[_productPrice];
+            foreach (KeyValuePair<string, List<string>> pair in inventoryMap)
             {
                 TableCell pInfo = new TableCell();
                 TableCell pPrice = new TableCell();
                 TableCell pCount = new TableCell();
-                TableCell pAction = new TableCell();
+                TableCell pEditAction = new TableCell();
+                TableCell pDeleteAction = new TableCell();
                 string productInfo = pair.Key;
                 int productCount = pair.Value.Count;
                 string productId = productMap[productInfo];
@@ -53,17 +50,21 @@ namespace ShoppingSite.Entry
                 pInfo.Text = productInfo;
                 pPrice.Text = productPrice.ToString();
                 pCount.Text = productCount.ToString();
-                ImageButton button = new ImageButton();
-                button.Width = 130;
-                button.Height = 100;
-                button.ImageUrl = "img/cart-img.jpg";
-                button.PostBackUrl = "Cart.aspx?pid=" + productId;
-                pAction.Controls.Add(button);
+                LinkButton editButton = new LinkButton();
+                editButton.Text = "Edit";
+                editButton.PostBackUrl = "EditProduct.aspx?pid=" + productId;
+                pEditAction.Controls.Add(editButton);
+                LinkButton deleteButton = new LinkButton();
+                deleteButton.Text = "Delete";
+                deleteButton.PostBackUrl = "DeleteProduct.aspx?pid=" + productId;
+                deleteButton.OnClientClick = "return confirm('Are you sure you want to delete this item?')";
+                pDeleteAction.Controls.Add(deleteButton);
                 TableRow row = new TableRow();
                 row.Cells.Add(pInfo);
                 row.Cells.Add(pPrice);
                 row.Cells.Add(pCount);
-                row.Cells.Add(pAction);
+                row.Cells.Add(pEditAction);
+                row.Cells.Add(pDeleteAction);
                 Products.Rows.Add(row);
             }
         }
