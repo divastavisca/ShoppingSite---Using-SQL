@@ -45,27 +45,30 @@ namespace ShoppingSite.Entry
                     {
                         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
                         {
-                            SqlCommand cmd = new SqlCommand("Delete * from Products where ProductId=@pid");
+                            SqlCommand cmd = new SqlCommand("Delete from Products where ProductId=@pid");
                             cmd.Parameters.AddWithValue("pid", pid);
                             cmd.Connection = connection;
                             SqlDataAdapter dAdap = new SqlDataAdapter(cmd);
                             DataSet ds = new DataSet();
                             dAdap.Fill(ds);
-                            Response.Write("<script>confirm('The product has been deleted')</script>");
+                            Response.Write("<script>" +
+                                "if(confirm('The product has been deleted'))" +
+                                "{window.location='ProductManipulation.aspx';}" +
+                                "</script>");
                             Session.Clear();
-                            Response.Redirect("ProductManipulation.aspx");
+                            //Response.Redirect("ProductManipulation.aspx");
                         }
                     }
                     else
                     {
-                        Response.Write("<script>confirm('The product has been already sold!! It cannot be deleted!!')</script>");
-                        Response.Redirect("ProductManipulation.aspx");
+                        Response.Write("<script>if(confirm('The product has been already sold!! It cannot be deleted!!')){window.location='ProductManipulation.aspx';}</script>");
+                        //Response.Redirect("ProductManipulation.aspx");
                     }
                 }
                 else
                 {
-                    Response.Write("<script>confirm('No such product exists!!')</script>");
-                    Response.Redirect("ProductManipulation.aspx");
+                    Response.Write("<script>if(confirm('No such product exists!!')){window.location='ProductManipulation.aspx';}</script>");
+                    //Response.Redirect("ProductManipulation.aspx");
                 }
             }
             else Response.Redirect("ProductManipulation.aspx");
