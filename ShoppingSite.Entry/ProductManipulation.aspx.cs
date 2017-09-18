@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoppingSite.Entry.src;
+using System.Data.SqlClient;
 
 namespace ShoppingSite.Entry
 {
@@ -33,39 +34,50 @@ namespace ShoppingSite.Entry
 
         private void populateProducts()
         {
-            Dictionary<string, List<string>> inventoryMap = (Dictionary<string, List<string>>)Session[_inventoryMap];
-            Dictionary<string, string> productMap = (Dictionary<string, string>)Session[_productIds];
-            Dictionary<string, int> productPrices = (Dictionary<string, int>)Session[_productPrice];
-            foreach (KeyValuePair<string, List<string>> pair in inventoryMap)
+            try
             {
-                TableCell pInfo = new TableCell();
-                TableCell pPrice = new TableCell();
-                TableCell pCount = new TableCell();
-                TableCell pEditAction = new TableCell();
-                TableCell pDeleteAction = new TableCell();
-                string productInfo = pair.Key;
-                int productCount = pair.Value.Count;
-                string productId = productMap[productInfo];
-                int productPrice = productPrices[productInfo];
-                pInfo.Text = productInfo;
-                pPrice.Text = productPrice.ToString();
-                pCount.Text = productCount.ToString();
-                LinkButton editButton = new LinkButton();
-                editButton.Text = "Edit";
-                editButton.PostBackUrl = "EditProduct.aspx?pid=" + productId;
-                pEditAction.Controls.Add(editButton);
-                LinkButton deleteButton = new LinkButton();
-                deleteButton.Text = "Delete";
-                deleteButton.PostBackUrl = "DeleteProduct.aspx?pid=" + productId;
-                deleteButton.OnClientClick = "return confirm('Are you sure you want to delete this item?')";
-                pDeleteAction.Controls.Add(deleteButton);
-                TableRow row = new TableRow();
-                row.Cells.Add(pInfo);
-                row.Cells.Add(pPrice);
-                row.Cells.Add(pCount);
-                row.Cells.Add(pEditAction);
-                row.Cells.Add(pDeleteAction);
-                Products.Rows.Add(row);
+                Dictionary<string, List<string>> inventoryMap = (Dictionary<string, List<string>>)Session[_inventoryMap];
+                Dictionary<string, string> productMap = (Dictionary<string, string>)Session[_productIds];
+                Dictionary<string, int> productPrices = (Dictionary<string, int>)Session[_productPrice];
+                foreach (KeyValuePair<string, List<string>> pair in inventoryMap)
+                {
+                    TableCell pInfo = new TableCell();
+                    TableCell pPrice = new TableCell();
+                    TableCell pCount = new TableCell();
+                    TableCell pEditAction = new TableCell();
+                    TableCell pDeleteAction = new TableCell();
+                    string productInfo = pair.Key;
+                    int productCount = pair.Value.Count;
+                    string productId = productMap[productInfo];
+                    int productPrice = productPrices[productInfo];
+                    pInfo.Text = productInfo;
+                    pPrice.Text = productPrice.ToString();
+                    pCount.Text = productCount.ToString();
+                    LinkButton editButton = new LinkButton();
+                    editButton.Text = "Edit";
+                    editButton.PostBackUrl = "EditProduct.aspx?pid=" + productId;
+                    pEditAction.Controls.Add(editButton);
+                    LinkButton deleteButton = new LinkButton();
+                    deleteButton.Text = "Delete";
+                    deleteButton.PostBackUrl = "DeleteProduct.aspx?pid=" + productId;
+                    deleteButton.OnClientClick = "return confirm('Are you sure you want to delete this item?')";
+                    pDeleteAction.Controls.Add(deleteButton);
+                    TableRow row = new TableRow();
+                    row.Cells.Add(pInfo);
+                    row.Cells.Add(pPrice);
+                    row.Cells.Add(pCount);
+                    row.Cells.Add(pEditAction);
+                    row.Cells.Add(pDeleteAction);
+                    Products.Rows.Add(row);
+                }
+            }
+            catch (SqlException dataBaseException)
+            {
+                Response.Write("<script>if(confirm('There was some problem loading the data, pls try again later'){window.location='ProductManipulation.aspx';})</script>");
+            }
+            catch (Exception exception)
+            {
+                Response.Write("<script>if('Error try again later'){window.location='ProductManipulation.aspx';}</script>");
             }
         }
     }

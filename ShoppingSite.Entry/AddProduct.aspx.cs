@@ -30,17 +30,28 @@ namespace ShoppingSite.Entry
             else
             {
                 DataStatus.Visible = false;
-                using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
+                try
                 {
-                    SqlCommand cmd = new SqlCommand("Select * from Products where ProductName=@pname");
-                    cmd.Connection = connection;
-                    cmd.Parameters.AddWithValue("pname", ProductName.Text);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    count = dt.Rows.Count;
+                    using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
+                    {
+                        SqlCommand cmd = new SqlCommand("Select * from Products where ProductName=@pname");
+                        cmd.Connection = connection;
+                        cmd.Parameters.AddWithValue("pname", ProductName.Text);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        count = dt.Rows.Count;
+                    }
                 }
-                if (count> 0)
+                catch (SqlException dataBaseException)
+                {
+                    Response.Write("<script>if(confirm('There was some problem loading the data, pls try again later'){window.location='ProductManipulation.aspx';})</script>");
+                }
+                catch(Exception exception)
+                {
+                    Response.Write("<script>if('Error try again later'){window.location='ProductManipulation.aspx';}</script>");
+                }
+                if (count > 0)
                 {
                     DataStatus.Text = "This product name already exists";
                     DataStatus.ForeColor = Color.Red;
@@ -48,17 +59,28 @@ namespace ShoppingSite.Entry
                 }
                 else
                 {
-                    using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
+                    try
                     {
-                        SqlCommand cmd = new SqlCommand("Insert into Products values(@pname,@qty,@price)");
-                        cmd.Connection = connection;
-                        cmd.Parameters.AddWithValue("pname", ProductName.Text);
-                        cmd.Parameters.AddWithValue("qty",Convert.ToInt32(Quantity.Text));
-                        cmd.Parameters.AddWithValue("price", Convert.ToInt32(Price.Text));
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        count = dt.Rows.Count;
+                        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
+                        {
+                            SqlCommand cmd = new SqlCommand("Insert into Products values(@pname,@qty,@price)");
+                            cmd.Connection = connection;
+                            cmd.Parameters.AddWithValue("pname", ProductName.Text);
+                            cmd.Parameters.AddWithValue("qty", Convert.ToInt32(Quantity.Text));
+                            cmd.Parameters.AddWithValue("price", Convert.ToInt32(Price.Text));
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            count = dt.Rows.Count;
+                        }
+                    }
+                    catch (SqlException dataBaseException)
+                    {
+                        Response.Write("<script>if(confirm('There was some problem loading the data, pls try again later'){window.location='ProductManipulation.aspx';})</script>");
+                    }
+                    catch (Exception exception)
+                    {
+                        Response.Write("<script>if('Error try again later'){window.location='ProductManipulation.aspx';}</script>");
                     }
                     Session.Clear();
                     Response.Write("<script>if(confirm('Product Added')){window.location='ProductManipulation.aspx';}</script>");    

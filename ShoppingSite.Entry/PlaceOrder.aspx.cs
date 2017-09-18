@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoppingSite.Core;
 using ShoppingSite.Entry.src;
+using System.Data.SqlClient;
 
 namespace ShoppingSite.Entry
 {
@@ -37,7 +38,18 @@ namespace ShoppingSite.Entry
             Dictionary<string, string> productIds = (Dictionary<string, string>)Session[_productIds];
             Dictionary<string, int> productPrice = (Dictionary<string, int>)Session[_productPrice];
             Dictionary<string, int> cartItems = (Dictionary<string, int>)Session[_container];
-            Session[_actualOrder] = OrderGenerator.Generate(productIds, productPrice, cartItems, (int)Session[_totalPrice]);
+            try
+            {
+                Session[_actualOrder] = OrderGenerator.Generate(productIds, productPrice, cartItems, (int)Session[_totalPrice]);
+            }
+            catch (SqlException dataBaseException)
+            {
+                Response.Write("<script>if(confirm('There was some problem loading the data, pls try again later'){window.location='ProductManipulation.aspx';})</script>");
+            }
+            catch (Exception exception)
+            {
+                Response.Write("<script>if('Error try again later'){window.location='ProductManipulation.aspx';}</script>");
+            }
             Response.Redirect("OrderSummary.aspx");
         }
     }

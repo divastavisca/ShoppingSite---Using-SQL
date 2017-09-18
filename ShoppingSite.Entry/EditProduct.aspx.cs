@@ -37,19 +37,30 @@ namespace ShoppingSite.Entry
             string productName = ProductName.Text;
             int qty = Convert.ToInt32(Quantity.Text);
             int price = Convert.ToInt32(Price.Text);
-            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ToString()))
+            try
             {
-                SqlCommand cmd = new SqlCommand("Update Products Set ProductName=@ProductName,Quantity=@Quantity,Price=@Price where ProductId=@ProductId");
-                cmd.Connection = connection;
-                cmd.Parameters.AddWithValue("ProductId", productId);
-                cmd.Parameters.AddWithValue("ProductName", productName);
-                cmd.Parameters.AddWithValue("Quantity", qty);
-                cmd.Parameters.AddWithValue("Price", price);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                Session.Clear();
-                Response.Write("<script>if(confirm('Product Updated')){window.location='ProductManipulation.aspx';}</script>");
+                using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ToString()))
+                {
+                    SqlCommand cmd = new SqlCommand("Update Products Set ProductName=@ProductName,Quantity=@Quantity,Price=@Price where ProductId=@ProductId");
+                    cmd.Connection = connection;
+                    cmd.Parameters.AddWithValue("ProductId", productId);
+                    cmd.Parameters.AddWithValue("ProductName", productName);
+                    cmd.Parameters.AddWithValue("Quantity", qty);
+                    cmd.Parameters.AddWithValue("Price", price);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    Session.Clear();
+                    Response.Write("<script>if(confirm('Product Updated')){window.location='ProductManipulation.aspx';}</script>");
+                }
+            }
+            catch (SqlException dataBaseException)
+            {
+                Response.Write("<script>if(confirm('There was some problem loading the data, pls try again later'){window.location='ProductManipulation.aspx';})</script>");
+            }
+            catch (Exception exception)
+            {
+                Response.Write("<script>if('Error try again later'){window.location='ProductManipulation.aspx';}</script>");
             }
         }
     }

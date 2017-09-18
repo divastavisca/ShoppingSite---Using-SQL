@@ -19,29 +19,36 @@ namespace ShoppingSite.Entry.src
         {
             Items = new List<IItem>();
             ItemMap = new Dictionary<string, List<string>>();
-            string connectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("Select * from Products", con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            DataTable products = ds.Tables[0];
-            string[] productArray = new string[products.Rows.Count];
-            int[] productPrice = new int[products.Rows.Count];
-            ItemPrice = new Dictionary<string, int>();
-            ProductIds = new Dictionary<string, string>();
-            foreach (DataRow row in products.Rows)
+            try
             {
-                int quantity = Convert.ToInt32(row[2]);
-                ItemMap.Add((string)row[1], new List<string>());
-                ItemPrice.Add((string)row[1], Convert.ToInt32(row[3]));
-                ProductIds.Add(row[1].ToString(), row[0].ToString());
-                for (int j = 1; j <= quantity; j++)
+                string connectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
+                SqlConnection con = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand("Select * from Products", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable products = ds.Tables[0];
+                string[] productArray = new string[products.Rows.Count];
+                int[] productPrice = new int[products.Rows.Count];
+                ItemPrice = new Dictionary<string, int>();
+                ProductIds = new Dictionary<string, string>();
+                foreach (DataRow row in products.Rows)
                 {
-                    Product newProduct = new Product(Guid.NewGuid().ToString(), (string)row[1], Convert.ToDouble(row[3]));
-                    Items.Add(newProduct);
-                    ItemMap[(string)row[1]].Add(newProduct.GetItemId());
+                    int quantity = Convert.ToInt32(row[2]);
+                    ItemMap.Add((string)row[1], new List<string>());
+                    ItemPrice.Add((string)row[1], Convert.ToInt32(row[3]));
+                    ProductIds.Add(row[1].ToString(), row[0].ToString());
+                    for (int j = 1; j <= quantity; j++)
+                    {
+                        Product newProduct = new Product(Guid.NewGuid().ToString(), (string)row[1], Convert.ToDouble(row[3]));
+                        Items.Add(newProduct);
+                        ItemMap[(string)row[1]].Add(newProduct.GetItemId());
+                    }
                 }
+            }
+            catch(Exception e)
+            {
+
             }
         }
 

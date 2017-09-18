@@ -26,11 +26,8 @@ namespace ShoppingSite.Entry
                     if(count==0)
                     {
                         count = performDbOperation("Delete from Products where ProductId=@pid", pid,null);
-                            Response.Write("<script>" +
-                                "if(confirm('The product has been deleted'))" +
-                                "{window.location='ProductManipulation.aspx';}" +
-                                "</script>");
-                            Session.Clear();
+                        Response.Write("<script>" +"if(confirm('The product has been deleted'))" +"{window.location='ProductManipulation.aspx';}" +"</script>");
+                        Session.Clear();
                     }
                     else Response.Write("<script>if(confirm('The product has been already sold!! It cannot be deleted!!')){window.location='ProductManipulation.aspx';}</script>");
                 }
@@ -42,16 +39,27 @@ namespace ShoppingSite.Entry
         private int performDbOperation(string command,string parameter,string dontRead)
         {
             int count = 0;
-            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand(command);
-                cmd.Parameters.AddWithValue("pid", parameter);
-                cmd.Connection = connection;
-                SqlDataAdapter dAdap = new SqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                dAdap.Fill(ds);
-                if(dontRead!=null)
-                 count = ds.Tables[0].Rows.Count;
+                using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(command);
+                    cmd.Parameters.AddWithValue("pid", parameter);
+                    cmd.Connection = connection;
+                    SqlDataAdapter dAdap = new SqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    dAdap.Fill(ds);
+                    if (dontRead != null)
+                        count = ds.Tables[0].Rows.Count;
+                }
+            }
+            catch (SqlException dataBaseException)
+            {
+                Response.Write("<script>if(confirm('There was some problem loading the data, pls try again later'){window.location='ProductManipulation.aspx';})</script>");
+            }
+            catch (Exception exception)
+            {
+                Response.Write("<script>if('Error try again later'){window.location='ProductManipulation.aspx';}</script>");
             }
             return count;
         }
