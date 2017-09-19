@@ -37,7 +37,7 @@ namespace ShoppingSite.Entry
                 }
                 catch (SqlException dataBaseException)
                 {
-                    Response.Write("<script>if(confirm('There was some problem loading the data, pls try again later'){window.location='ProductManipulation.aspx';})</script>");
+                    Response.Write("<script>if(confirm('There was some problem loading the data, pls try again later'){window.location='ProductManipulation.aspx';}</script>");
                 }
                 catch (Exception exception)
                 {
@@ -49,7 +49,7 @@ namespace ShoppingSite.Entry
 
         private void populateProducts()
         {
-            Products.Visible = true;
+            TableProducts.Visible = true;
             try
             {
                 Dictionary<string, List<string>> inventoryMap = (Dictionary<string, List<string>>)Session[_inventoryMap];
@@ -57,7 +57,7 @@ namespace ShoppingSite.Entry
                 Dictionary<string, int> productPrices = (Dictionary<string, int>)Session[_productPrice];
                 if(inventoryMap.Count == 0)
                 {
-                    Products.Visible = false;
+                    TableProducts.Visible = false;
                     Response.Write("<script>if(confirm('Currently there is no product in the data store')){window.location='AddProduct.aspx';}</script>");
                 }
                 foreach (KeyValuePair<string, List<string>> pair in inventoryMap)
@@ -84,7 +84,7 @@ namespace ShoppingSite.Entry
                     row.Cells.Add(pPrice);
                     row.Cells.Add(pCount);
                     row.Cells.Add(pAction);
-                    Products.Rows.Add(row);
+                    TableProducts.Rows.Add(row);
                 }
             }
             catch (SqlException dataBaseException)

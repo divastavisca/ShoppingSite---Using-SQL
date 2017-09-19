@@ -25,25 +25,25 @@ namespace ShoppingSite.Entry
                 {
                     Session[_cart] = new ShoppingCart();
                     Session[_container] = new Dictionary<string, int>();
-                    Continue.Text = "Continue Shopping";
-                    Continue.Visible = true;
-                    PlaceOrder.Visible = true;
-                    CartContainer.Visible = true;
+                    ButtonContinue.Text = "Continue Shopping";
+                    ButtonContinue.Visible = true;
+                    ButtonPlaceOrder.Visible = true;
+                    TableCartContainer.Visible = true;
                     populateCart();
                 }
                 else
                 {
                     heading.InnerText = "Sorry, at present the cart is empty";
-                    Continue.Visible = true;
-                    Continue.Text = "Start Shopping";
+                    ButtonContinue.Visible = true;
+                    ButtonContinue.Text = "Start Shopping";
                 }
             }
             else
             {
-                Continue.Text = "Continue Shopping";
-                Continue.Visible = true;
-                PlaceOrder.Visible = true;
-                CartContainer.Visible = true;
+                ButtonContinue.Text = "Continue Shopping";
+                ButtonContinue.Visible = true;
+                ButtonPlaceOrder.Visible = true;
+                TableCartContainer.Visible = true;
                 populateCart();
             }
         }
@@ -96,7 +96,7 @@ namespace ShoppingSite.Entry
                 row.Cells.Add(count);
                 row.Cells.Add(price);
                 totalAmount += amount;
-                CartContainer.Rows.Add(row);
+                TableCartContainer.Rows.Add(row);
             }
             AmountLabel.Visible = true;
             AmountLabel.Font.Size = FontUnit.Larger;

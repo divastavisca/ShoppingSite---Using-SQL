@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Table ID="Products" runat="server" Width="100%" BorderStyle="Groove">
+            <asp:Table ID="TableProducts" runat="server" Width="100%" BorderStyle="Groove">
                 <asp:TableRow>
                     <asp:TableCell>ProductName</asp:TableCell>
                     <asp:TableCell>Price</asp:TableCell>
@@ -19,7 +19,7 @@
                 </asp:TableRow>
             </asp:Table>
             <div>
-                <asp:LinkButton ID="AddProduct" runat="server" PostBackUrl="AddProduct.aspx">Add Product</asp:LinkButton>
+                <asp:LinkButton ID="LinkButtonAddProduct" runat="server" PostBackUrl="AddProduct.aspx">Add Product</asp:LinkButton>
             </div>
         </div>
     </form>

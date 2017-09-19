@@ -20,11 +20,11 @@ namespace ShoppingSite.Entry
             {
                 Dictionary<string, int> items = (Dictionary<string, int>)Session[_container];
                 Order userOrder = (Order)Session[_actualOrder];
-                OrderRef.Text = userOrder.OrderId;
-                OrderAmount.Text = userOrder.OrderAmount.ToString();
+                LabelOrderRef.Text = userOrder.OrderId;
+                LabelOrderAmount.Text = userOrder.OrderAmount.ToString();
                 foreach(KeyValuePair<string,int>item in items)
                 {
-                    OrderList.Text = OrderList.Text + ", ("+item.Key+") X "+item.Value;
+                    LabelOrderList.Text = LabelOrderList.Text + ", ("+item.Key+") X "+item.Value;
                 }
                 Session.Clear();
             }

@@ -22,66 +22,66 @@ namespace ShoppingSite.Entry {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// DescribeTable control.
+        /// TableAddProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table DescribeTable;
+        protected global::System.Web.UI.WebControls.Table TableAddProduct;
         
         /// <summary>
-        /// ProductName control.
+        /// TextBoxProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductName;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxProductName;
         
         /// <summary>
-        /// Quantity control.
+        /// TextBoxQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Quantity;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxQuantity;
         
         /// <summary>
-        /// Price control.
+        /// TextBoxPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Price;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPrice;
         
         /// <summary>
-        /// Add control.
+        /// ButtonAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Add;
+        protected global::System.Web.UI.WebControls.Button ButtonAdd;
         
         /// <summary>
-        /// Back control.
+        /// ButtonBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Back;
+        protected global::System.Web.UI.WebControls.Button ButtonBack;
         
         /// <summary>
-        /// DataStatus control.
+        /// LabelDataStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DataStatus;
+        protected global::System.Web.UI.WebControls.Label LabelDataStatus;
     }
 }

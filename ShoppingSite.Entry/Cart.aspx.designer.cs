@@ -31,13 +31,13 @@ namespace ShoppingSite.Entry {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl heading;
         
         /// <summary>
-        /// CartContainer control.
+        /// TableCartContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table CartContainer;
+        protected global::System.Web.UI.WebControls.Table TableCartContainer;
         
         /// <summary>
         /// AmountLabel control.
@@ -58,21 +58,21 @@ namespace ShoppingSite.Entry {
         protected global::System.Web.UI.WebControls.Label Payable;
         
         /// <summary>
-        /// Continue control.
+        /// ButtonContinue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Continue;
+        protected global::System.Web.UI.WebControls.Button ButtonContinue;
         
         /// <summary>
-        /// PlaceOrder control.
+        /// ButtonPlaceOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PlaceOrder;
+        protected global::System.Web.UI.WebControls.Button ButtonPlaceOrder;
     }
 }

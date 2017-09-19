@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <h1 id="heading" runat="server">Your items are ready to be ordered</h1>
-        <asp:Table ID="CartContainer" EnableViewState="true" runat="server" BorderStyle="Outset" Font-Italic="True" Font-Size="Larger" HorizontalAlign="Center" Width="70%" Visible="false">
+        <asp:Table ID="TableCartContainer" EnableViewState="true" runat="server" BorderStyle="Outset" Font-Italic="True" Font-Size="Larger" HorizontalAlign="Center" Width="70%" Visible="false">
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell>Item</asp:TableHeaderCell>
                 <asp:TableHeaderCell>Quantity</asp:TableHeaderCell>
@@ -28,9 +28,9 @@
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <asp:Button ID="Continue" runat="server" Text="Continue Shopping" BorderStyle="Ridge" PostBackUrl="~/Home.aspx" Visible="false"/>
+            <asp:Button ID="ButtonContinue" runat="server" Text="Continue Shopping" BorderStyle="Ridge" PostBackUrl="~/Home.aspx" Visible="false"/>
 
-    &nbsp;<asp:Button ID="PlaceOrder" runat="server" BorderStyle="Ridge" Text="Place Order" Visible="false" OnClick="PlaceOrder_Click" OnClientClick="return confirm(&quot;Are you sure you want to Proceed?&quot;)" />
+    &nbsp;<asp:Button ID="ButtonPlaceOrder" runat="server" BorderStyle="Ridge" Text="Place Order" Visible="false" OnClick="PlaceOrder_Click" OnClientClick="return confirm(&quot;Are you sure you want to Proceed?&quot;)" />
 
         </p>
 

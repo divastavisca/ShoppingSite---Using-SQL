@@ -21,7 +21,29 @@ namespace ShoppingSite.Entry
             }
             if(Session[_productEdit]!=null)
             {
-                ProductId.Text = Session[_productEdit].ToString();
+                TextBoxProductId.Text = Session[_productEdit].ToString();
+                try
+                {
+                    DataTable table = new DataTable();
+                    using (SqlConnection connnection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
+                    {
+                        SqlCommand command = new SqlCommand("Select * from Products where ProductId=@pid", connnection);
+                        command.Parameters.AddWithValue("pid", TextBoxProductId.Text);
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(table);
+                    }
+                    TextBoxProductName.Text = table.Rows[1].ToString();
+                    TextBoxQuantity.Text = table.Rows[2].ToString();
+                    TextBoxPrice.Text = table.Rows[3].ToString();
+                }
+                catch(SqlException excep)
+                {
+
+                }
+                catch(Exception exc)
+                {
+
+                }
                 editForm.Visible = true;
             }
             else
@@ -33,10 +55,10 @@ namespace ShoppingSite.Entry
 
         protected void Save_Click(object sender, EventArgs e)
         {
-            string productId = ProductId.Text;
-            string productName = ProductName.Text;
-            int qty = Convert.ToInt32(Quantity.Text);
-            int price = Convert.ToInt32(Price.Text);
+            string productId = TextBoxProductId.Text;
+            string productName = TextBoxProductName.Text;
+            int qty = Convert.ToInt32(TextBoxQuantity.Text);
+            int price = Convert.ToInt32(TextBoxPrice.Text);
             try
             {
                 using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ToString()))

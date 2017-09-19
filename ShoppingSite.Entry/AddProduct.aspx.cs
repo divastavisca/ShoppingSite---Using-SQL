@@ -15,28 +15,28 @@ namespace ShoppingSite.Entry
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataStatus.Visible = false;
+            LabelDataStatus.Visible = false;
         }
 
         protected void Add_Click(object sender, EventArgs e)
         {
             int count = 0;
-            if(ProductName.Text.Length==0||Quantity.Text.Length==0||Price.Text.Length==0)
+            if(TextBoxProductName.Text.Length==0|| TextBoxQuantity.Text.Length==0|| TextBoxPrice.Text.Length==0)
             {
-                DataStatus.Text = "Invalid Input";
-                DataStatus.ForeColor = Color.Red;
-                DataStatus.Visible = true;
+                LabelDataStatus.Text = "Invalid Input";
+                LabelDataStatus.ForeColor = Color.Red;
+                LabelDataStatus.Visible = true;
             }
             else
             {
-                DataStatus.Visible = false;
+                LabelDataStatus.Visible = false;
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dbcs"].ConnectionString))
                     {
                         SqlCommand cmd = new SqlCommand("Select * from Products where ProductName=@pname");
                         cmd.Connection = connection;
-                        cmd.Parameters.AddWithValue("pname", ProductName.Text);
+                        cmd.Parameters.AddWithValue("pname", TextBoxProductName.Text);
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -53,9 +53,9 @@ namespace ShoppingSite.Entry
                 }
                 if (count > 0)
                 {
-                    DataStatus.Text = "This product name already exists";
-                    DataStatus.ForeColor = Color.Red;
-                    DataStatus.Visible = true;
+                    LabelDataStatus.Text = "This product name already exists";
+                    LabelDataStatus.ForeColor = Color.Red;
+                    LabelDataStatus.Visible = true;
                 }
                 else
                 {
@@ -65,9 +65,9 @@ namespace ShoppingSite.Entry
                         {
                             SqlCommand cmd = new SqlCommand("Insert into Products values(@pname,@qty,@price)");
                             cmd.Connection = connection;
-                            cmd.Parameters.AddWithValue("pname", ProductName.Text);
-                            cmd.Parameters.AddWithValue("qty", Convert.ToInt32(Quantity.Text));
-                            cmd.Parameters.AddWithValue("price", Convert.ToInt32(Price.Text));
+                            cmd.Parameters.AddWithValue("pname", TextBoxProductName.Text);
+                            cmd.Parameters.AddWithValue("qty", Convert.ToInt32(TextBoxQuantity.Text));
+                            cmd.Parameters.AddWithValue("price", Convert.ToInt32(TextBoxPrice.Text));
                             SqlDataAdapter da = new SqlDataAdapter(cmd);
                             DataTable dt = new DataTable();
                             da.Fill(dt);

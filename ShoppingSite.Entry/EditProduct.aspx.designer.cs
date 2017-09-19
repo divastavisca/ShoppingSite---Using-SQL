@@ -40,66 +40,66 @@ namespace ShoppingSite.Entry {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl heading;
         
         /// <summary>
-        /// EditPanel control.
+        /// TableEditPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table EditPanel;
+        protected global::System.Web.UI.WebControls.Table TableEditPanel;
         
         /// <summary>
-        /// ProductId control.
+        /// TextBoxProductId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductId;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxProductId;
         
         /// <summary>
-        /// ProductName control.
+        /// TextBoxProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductName;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxProductName;
         
         /// <summary>
-        /// Quantity control.
+        /// TextBoxQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Quantity;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxQuantity;
         
         /// <summary>
-        /// Price control.
+        /// TextBoxPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Price;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPrice;
         
         /// <summary>
-        /// Save control.
+        /// ButtonSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Save;
+        protected global::System.Web.UI.WebControls.Button ButtonSave;
         
         /// <summary>
-        /// Back control.
+        /// ButtonBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Back;
+        protected global::System.Web.UI.WebControls.Button ButtonBack;
     }
 }

@@ -22,30 +22,30 @@ namespace ShoppingSite.Entry {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// OrderRef control.
+        /// LabelOrderRef control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label OrderRef;
+        protected global::System.Web.UI.WebControls.Label LabelOrderRef;
         
         /// <summary>
-        /// OrderAmount control.
+        /// LabelOrderAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label OrderAmount;
+        protected global::System.Web.UI.WebControls.Label LabelOrderAmount;
         
         /// <summary>
-        /// OrderList control.
+        /// LabelOrderList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label OrderList;
+        protected global::System.Web.UI.WebControls.Label LabelOrderList;
     }
 }

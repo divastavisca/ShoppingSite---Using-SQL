@@ -20,16 +20,16 @@ namespace ShoppingSite.Entry
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Pay.Visible = false;
+            ButtonPay.Visible = false;
             if(Session[_container]==null)
             {
-                OrderSummary.Text = "Invalid order request";
+                LabelOrderSummary.Text = "Invalid order request";
             }
             else
             {
-                OrderSummary.Text = "Thank you for shopping with us please pay " + Session[_totalPrice].ToString()+".";
-                Pay.Visible = true;
-                Pay.Text = "Pay " + Session[_totalPrice].ToString();
+                LabelOrderSummary.Text = "Thank you for shopping with us please pay " + Session[_totalPrice].ToString()+".";
+                ButtonPay.Visible = true;
+                ButtonPay.Text = "Pay " + Session[_totalPrice].ToString();
             }
         }
 

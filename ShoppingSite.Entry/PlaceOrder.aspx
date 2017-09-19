@@ -11,10 +11,10 @@
     <div>
     
     </div>
-        <asp:Label ID="OrderSummary" runat="server"></asp:Label>
+        <asp:Label ID="LabelOrderSummary" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Button ID="Pay" runat="server" OnClick="Pay_Click"/>
+        <asp:Button ID="ButtonPay" runat="server" OnClick="Pay_Click"/>
     </form>
 </body>
 </html>

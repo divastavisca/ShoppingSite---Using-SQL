@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
 
-        <asp:Table ID="Products" runat="server" Width="100%" BorderStyle="Groove">
+        <asp:Table ID="TableProducts" runat="server" Width="100%" BorderStyle="Groove">
             <asp:TableRow>
                 <asp:TableCell>Item</asp:TableCell>
                 <asp:TableCell>Price</asp:TableCell>

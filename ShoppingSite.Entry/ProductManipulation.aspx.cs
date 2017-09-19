@@ -68,7 +68,7 @@ namespace ShoppingSite.Entry
                     row.Cells.Add(pCount);
                     row.Cells.Add(pEditAction);
                     row.Cells.Add(pDeleteAction);
-                    Products.Rows.Add(row);
+                    TableProducts.Rows.Add(row);
                 }
             }
             catch (SqlException dataBaseException)

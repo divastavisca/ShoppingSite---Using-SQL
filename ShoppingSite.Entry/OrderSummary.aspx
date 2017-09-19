@@ -13,15 +13,15 @@
         <h1>Thanks for your order!</h1>
         <p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Order Reference:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="OrderRef" runat="server"></asp:Label>
+            <asp:Label ID="LabelOrderRef" runat="server"></asp:Label>
         </p>
         <p>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Order Amount :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="OrderAmount" runat="server"></asp:Label>
+            <asp:Label ID="LabelOrderAmount" runat="server"></asp:Label>
             &nbsp;</p>
         <p>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Order List:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="OrderList" runat="server"></asp:Label>
+            <asp:Label ID="LabelOrderList" runat="server"></asp:Label>
             &nbsp;</p>
     </form>
 </body>
